@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Tweet Component</title>
+    <style>
+      @font-face {
+        font-family: "TwitterChirp";
+        src: url("https://abs.twimg.com/fonts/v2/chirp-regular-web.woff")
+            format("woff"),
+          url("https://abs.twimg.com/fonts/v2/chirp-regular-web.woff")
+            format("woff2");
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: "TwitterChirp";
+        src: url("https://abs.twimg.com/fonts/v2/chirp-bold-web.woff") format("woff"),
+          url("https://abs.twimg.com/fonts/v2/chirp-bold-web.woff") format("woff2");
+        font-weight: 700;
+      }
+
+      body,
+      body * {
+        font-family: "TwitterChirp";
+        font-weight: 400;
+      }
+
+      .compose-tweet-container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .compose-tweet-profile-picture {
+        width: 50px;
+        height: 50px;
+        margin-right: 24px;
+      }
+
+      .compose-tweet-form {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding-top: 12px;
+      }
+
+      .compose-tweet-form-textbox {
+        border: none;
+        min-height: 100px;
+        resize: none;
+        margin-bottom: 12px;
+        color: #536471;
+        font-size: 20px;
+        padding: 6px;
+        outline-color: #8ecdf8;
+      }
+
+      .compose-tweet-form-permission-button {
+        text-align: left;
+        border: none;
+        background: url("./assets/icon-earth.png") no-repeat;
+        background-size: 24px 24px;
+        background-position-x: 12px;
+        background-position-y: center;
+        width: max-content;
+        color: #1d98f0;
+        font-weight: 700;
+        padding: 6px 20px 6px 42px;
+        outline-color: #8ecdf8;
+        border-radius: 12px;
+      }
+
+      .compose-tweet-form-permission-button:focus {
+        background-color: #e8f5fd;
+        border-radius: 24px;
+        transition: 300ms ease-in;
+        transition-property: background-color, border-radius;
+      }
+
+      .compose-tweet-form-line {
+        width: 100%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        color: #eff3f4;
+        border-style: solid;
+        margin-left: -18px;
+      }
+
+      .compose-tweet-form-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .compose-tweet-form-actions > *:not(:last-child) {
+        margin-right: 12px;
+      }
+
+      .compose-tweet-form-actions > * {
+        width: 24px;
+        height: 24px;
+        padding: 18px;
+        border: none;
+        background-size: 24px 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border-radius: 40%;
+      }
+
+      .compose-tweet-form-action-media {
+        background-image: url("./assets/icon-media.png");
+      }
+
+      .compose-tweet-form-action-gif {
+        background-image: url("./assets/icon-gif.png");
+      }
+
+      .compose-tweet-form-action-poll {
+        background-image: url("./assets/icon-poll.png");
+      }
+
+      .compose-tweet-form-action-emoji {
+        background-image: url("./assets/icon-emoji.png");
+      }
+
+      .compose-tweet-form-action-schedule {
+        background-image: url("./assets/icon-schedule.png");
+      }
+
+      .compose-tweet-form-action-geo {
+        background-image: url("./assets/icon-geo.png");
+      }
+
+      .compose-tweet-form-primary-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .compose-tweet-form-character-count {
+        width: 24px;
+        height: 24px;
+        border-right: 1px solid #b9cad3;
+        padding-right: 12px;
+      }
+
+      .compose-tweet-form-primary-actions > *:not(:last-child) {
+        margin-right: 12px;
+      }
+
+      .compose-tweet-form-additional-tweet-button {
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: url("./assets/icon-add-tweet.png") no-repeat;
+        background-size: contain;
+        border-radius: 40%;
+      }
+
+      .compose-tweet-form-actions > *:focus,
+      .compose-tweet-form-additional-tweet-button:focus {
+        outline-color: #8ecdf8;
+        background-color: #e8f5fd;
+        border-radius: 50%;
+        transition: 300ms ease-in;
+        transition-property: background-color, border-radius;
+      }
+
+      .compose-tweet-form-primary-button {
+        border-radius: 24px;
+        padding: 8px 16px;
+        border: none;
+        background-color: #1d98f0;
+        color: #ffffff;
+        font-weight: 400;
+      }
+
+      .compose-tweet-form-primary-button:focus {
+        background-color: #1a8cd8;
+        outline-color: #8ecdf8;
+        transition: 300ms ease-in;
+        transition-property: background-color;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="compose-tweet-container">
+      <img class="compose-tweet-profile-picture" src="./assets/profile-pic.png" />
+      <form class="compose-tweet-form">
+        <textarea
+          class="compose-tweet-form-textbox"
+          placeholder="What's happening?"
+        ></textarea>
+        <button class="compose-tweet-form-permission-button">
+          Everyone can reply
+        </button>
+        <hr class="compose-tweet-form-line" />
+        <div class="compose-tweet-form-footer">
+          <div class="compose-tweet-form-actions">
+            <button class="compose-tweet-form-action-media"></button>
+            <button class="compose-tweet-form-action-gif"></button>
+            <button class="compose-tweet-form-action-poll"></button>
+            <button class="compose-tweet-form-action-emoji"></button>
+            <button class="compose-tweet-form-action-schedule"></button>
+            <button class="compose-tweet-form-action-geo"></button>
+          </div>
+          <div class="compose-tweet-form-primary-actions">
+            <img
+              class="compose-tweet-form-character-count"
+              src="./assets/character-count.png"
+            />
+            <button class="compose-tweet-form-additional-tweet-button"></button>
+            <button class="compose-tweet-form-primary-button">Tweet</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <img src="./reference/reference.png" style="height: 280px" />
+  </body>
+</html>
