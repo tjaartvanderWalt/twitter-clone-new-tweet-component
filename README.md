@@ -1,5 +1,7 @@
 # How to create the new tweet component from Twitter using HTML and CSS
 
+<img src="./preview.png">
+
 ## Link to tutorial video
 
 https://youtu.be/rGt57Hzp0FU
